@@ -1,0 +1,17 @@
+# refining the jq results. . #
+
+author=$(cat file.json | jq -r --arg EMAILID "$EMAILID" '.resource[]
+ \ | select(.username==$EMAILID) | .id')
+
+ | jq '.DATA[]  | select(.DOMAIN == "domain2") | .DOMAINID'
+ | jq '.[]  | select(.commit.author.name == .commit.committer.name) | .sha'
+curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=5'  | jq '.[0]'
+
+curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=50' \
+ | jq '.[] | {author: .commit.author.name, name: .commit.committer.name, sha: .sha}'
+
+curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=50' | jq '.[] | select(.commit.author.name == .commit.committer.name) | .sha'
+
+curl -i https://api.github.com/users/bcampagnolo
+
+curl 'https://api.github.com/rate_limit'

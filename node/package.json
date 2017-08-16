@@ -1,0 +1,35 @@
+{
+  "name": "github-utility-lambda-example",
+  "version": "0.0.1",
+  "description": "Sample node module to get github stats",
+  "main": "index.js",
+  "scripts": {
+    "test": "istanbul cover --report cobertura _mocha && nsp check",
+    "postpublish": "git push --follow-tags --set-upstream origin ${branch}"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bcampagnolo/takehome.git"
+  },
+  "keywords": [
+    "nodejs",
+    "module",
+    "health",
+    "stats"
+  ],
+  "author": "Paul Morrison",
+  "license": "MIT",
+  "devDependencies": {
+    "node-jq": "~0.7.0",
+    "chai": "~3.5.0",
+    "istanbul": "~0.4.5",
+    "mocha": "~3.0.2",
+    "mocha-junit-reporter": "~1.12.0",
+    "nsp": "~2.6.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "request-json": "~0.6.2",
+    "request": "~2.81.0"
+  }
+}
