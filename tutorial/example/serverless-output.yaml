@@ -1,0 +1,12 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  TestFunction:
+    Properties:
+      CodeUri: s3://artifacts-7135-2626-9054-us-west-2/f34affcb15be044b54f26228506704fb
+      Environment:
+        Variables:
+          S3_BUCKET: artifacts-7135-2626-9054-us-west-2
+      Handler: index.handler
+      Runtime: nodejs6.10
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

@@ -14,7 +14,7 @@ var ghOptions = {
 function handleNetworkResponse(err, body, callback) {
     if(err) {return callback(err); }
     var same = _.filter(body, function(val) {
-       return val.commit.author.name === val.commit.committer.name
+        return val.commit.author.name === val.commit.committer.name
     });
     var shas = _.map(same, function(val) {
         return val.sha;
@@ -25,8 +25,8 @@ function handleNetworkResponse(err, body, callback) {
 
 function makeRequest(ghOptions, callback) {
     if (test) {
-    //read in file
-        return fs.readFile('./commits.json', 'utf8', function (err, str) {
+        //read in file
+        return fs.readFile('./data/commits.json', 'utf8', function (err, str) {
             if(err) {return callback(err); }
 
             handleNetworkResponse(null, JSON.parse(str), callback);
@@ -48,6 +48,7 @@ exports.handler = function(event, context, callback) {
     // Use callback() and return information to the caller.
 }
 
-// if test. . .
-// makeRequest(ghOptions, handleNetworkResponse);
+// if (test) {
+//     makeRequest(ghOptions, handleNetworkResponse);
+}
 
