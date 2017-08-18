@@ -1,13 +1,6 @@
 import json
 import requests
-import pyjq
-
-# All commit info we care about for exercise #
-# .[] | {author: .commit.author.name, name: .commit.committer.name, sha: .sha}'
-#
-# Filtered commit info
-# .[] | select(.commit.author.name == .commit.committer.name) | .sha
-# url = 'https://api.github.com/repos/stedolan/jq/commits?per_page=50'
+from pydash import py_
 
 isTest = False
 
@@ -15,11 +8,13 @@ isTest = False
 def readfile():
     with open('./data/commits.json') as data_file:
         data = json.load(data_file)
-        filtered = pyjq.all('.[] | select(.commit.author.name == .commit.committer.name) | .sha', data)
 
-    print(json.dumps(filtered, indent=2))
+        filtered = py_.filter(data, {'commit.author.name' == 'commit.committer.name'})
+        shas = py_.map_(filtered, '.sha')
+
+    print(json.dumps(shas, indent=2))
     return {'statusCode': 200,
-            'body': json.dumps(filtered),
+            'body': json.dumps(shas),
             'headers': {'Content-Type': 'application/json'}}
 
 
@@ -32,7 +27,9 @@ def readurl():
 
     response = requests.get(url=url, params=params)
     data = response.json()
-    shas = pyjq.all('.[] | select(.commit.author.name == .commit.committer.name) | .sha', data)
+
+    filtered = py_.filter(data, {'commit.author.name' == 'commit.committer.name'})
+    shas = py_.map_(filtered, '.sha')
 
     print(json.dumps(shas, indent=2))
     return {'statusCode': 200,
@@ -45,3 +42,11 @@ def handler(event, context):
         readfile()
     else:
         readurl()
+
+# def main():
+#     if isTest == "True":
+#         readfile()
+#     else:
+#         readurl()
+#
+# main()
