@@ -2,7 +2,7 @@ AWSTemplateFormatVersion: '2010-09-09'
 Resources:
   TestFunction:
     Properties:
-      CodeUri: s3://artifacts-7135-2626-9054-us-west-2/5f97acb499efe156f69692a466529506
+      CodeUri: s3://artifacts-7135-2626-9054-us-west-2/00b88bbf14e0c78185adcc993ddc776f
       Environment:
         Variables:
           S3_BUCKET: artifacts-7135-2626-9054-us-west-2

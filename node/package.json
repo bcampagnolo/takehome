@@ -4,6 +4,8 @@
   "description": "Sample node module to get github stats",
   "main": "index.js",
   "scripts": {
+    "build": "npm build && ./package.sh",
+    "deploy": "npm run build && ./deploy.sh",
     "test": "istanbul cover --report cobertura _mocha && nsp check",
     "postpublish": "git push --follow-tags --set-upstream origin ${branch}"
   },
@@ -20,7 +22,6 @@
   "author": "Paul Morrison",
   "license": "MIT",
   "devDependencies": {
-    "@maxbeatty/aws-lambda-deploy": "^2.2.0",
     "chai": "~3.5.0",
     "istanbul": "~0.4.5",
     "mocha": "~3.0.2",
