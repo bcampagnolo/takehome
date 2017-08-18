@@ -10,6 +10,7 @@ function timestamp {
 }
 
 function do_zip {
+  mkdir -p ../deploy/node/
   zip -r ../deploy/node/node_list_sha.zip *
   timestamp
 }
