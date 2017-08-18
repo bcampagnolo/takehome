@@ -20,7 +20,7 @@
   "author": "Paul Morrison",
   "license": "MIT",
   "devDependencies": {
-    "node-jq": "~0.7.0",
+    "@maxbeatty/aws-lambda-deploy": "^2.2.0",
     "chai": "~3.5.0",
     "istanbul": "~0.4.5",
     "mocha": "~3.0.2",
