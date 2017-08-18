@@ -28,3 +28,4 @@ AWS Code star may also be used - that work is located here:
 # Current API GW URL
 
 * [node GET url](https://vai4prg0r7.execute-api.us-west-2.amazonaws.com/prod/ "node GET")
+* [python GET url](https://52ion0v16i.execute-api.us-west-2.amazonaws.com/Prod/python_list_sha/ "python GET")

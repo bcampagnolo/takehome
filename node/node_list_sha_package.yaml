@@ -20,4 +20,4 @@ Resources:
           Type: Api
           Properties:
             Path: /node_list_sha
-            Method: ANY
+            Method: GET
