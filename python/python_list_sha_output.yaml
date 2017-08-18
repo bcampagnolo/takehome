@@ -3,7 +3,7 @@ Description: python sample to list 50 sha
 Resources:
   pythonlistsha:
     Properties:
-      CodeUri: s3://artifacts-7135-2626-9054-us-west-2/f047e8b6a5ed904e8dd467f28f216f01
+      CodeUri: s3://artifacts-7135-2626-9054-us-west-2/763560e67b0a1f0c88d9d39a941d2abb
       Description: python sample to list 50 sha
       Environment:
         Variables:
@@ -11,10 +11,10 @@ Resources:
       Events:
         Api1:
           Properties:
-            Method: ANY
+            Method: GET
             Path: /python_list_sha
           Type: Api
-      Handler: index.handler
+      Handler: handler.handler
       MemorySize: 128
       Role: arn:aws:iam::713526269054:role/lambda_basic_execution
       Runtime: python3.6

@@ -5,8 +5,8 @@ Resources:
   pythonlistsha:
     Type: 'AWS::Serverless::Function'
     Properties:
-      Handler: index.handler
-      Runtime: python2.7
+      Handler: handler.handler
+      Runtime: python3.6
       CodeUri: ../deploy/python/python_list_sha.zip
       Description: python sample to list 50 sha
       MemorySize: 128
@@ -20,4 +20,4 @@ Resources:
           Type: Api
           Properties:
             Path: /python_list_sha
-            Method: ANY
+            Method: GET
