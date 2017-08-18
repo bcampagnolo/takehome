@@ -24,3 +24,7 @@ Alternatively, the node sample can be done in a single step `npm run deploy`. Th
 
 ## CodeStar
 AWS Code star may also be used - that work is located here:
+
+# Current API GW URL
+
+* [node GET url](https://vai4prg0r7.execute-api.us-west-2.amazonaws.com/prod/ "node GET")
