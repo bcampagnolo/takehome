@@ -47,8 +47,3 @@ exports.handler = function(event, context, callback) {
 
     // Use callback() and return information to the caller.
 }
-
-// if (test) {
-//     makeRequest(ghOptions, handleNetworkResponse);
-}
-

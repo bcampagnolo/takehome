@@ -1,41 +1,47 @@
 import json
-import logging
 import requests
 import pyjq
-from jq import jq
-from pprint import pprint
 
 
-# --- Logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+# All commit info we care about for exercise #
+# .[] | {author: .commit.author.name, name: .commit.committer.name, sha: .sha}'
+#
+# Filtered commit info
+# .[] | select(.commit.author.name == .commit.committer.name) | .sha
+# url = 'https://api.github.com/repos/stedolan/jq/commits?per_page=50'
 
-handler = logging.FileHandler('./logs/python.log')
-handler.setLevel(logging.INFO)
+isTest = False
 
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-handler.setFormatter(formatter)
+def readFile():
+    with open('./data/commits.json') as data_file:
+        data = json.load(data_file)
+        filtered = pyjq.all('.[] | select(.commit.author.name == .commit.committer.name) | .sha', data)
 
-# add the handlers to the logger
-logger.addHandler(handler)
-logger.info('Starting application')
-# --- END of Logging
+    print json.dumps(filtered, indent=2)
+    return {'statusCode': 200,
+            'body': json.dumps(filtered),
+            'headers': {'Content-Type': 'application/json'}}
 
-with open('./data/commits.json') as data_file:
-    data = json.load(data_file)
-    pyjq.all()
-pprint(data)
+def readURL():
+    url = 'https://api.github.com/repos/stedolan/jq/commits?per_page=50'
+
+    params = dict(
+        Headers='User-Agent: request'
+    )
+
+    response = requests.get(url=url, params=params)
+    data = response.json()
+    shas = pyjq.all('.[] | select(.commit.author.name == .commit.committer.name) | .sha', data)
+
+    print json.dumps(shas, indent=2)
+    return {'statusCode': 200,
+            'body': json.dumps(shas),
+            'headers': {'Content-Type': 'application/json'}}
 
 
-url = 'https://api.github.com/repos/stedolan/jq/commits?per_page=50'
+def handler(event, context):
+    if isTest == "True":
+        readFile()
+    else:
+        readURL()
 
-params = dict(
-    Headers='User-Agent: request'
-)
-
-response = requests.get(url=url, params=params)
-data = response.json(jq '.[] | select(.commit.author.name == .commit.committer.name) | .sha')
-
-jq '.[] | select(.commit.author.name == .commit.committer.name) | .sha'
-
-print (data)

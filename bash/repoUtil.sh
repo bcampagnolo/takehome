@@ -8,27 +8,27 @@ IFS=$'\n\t'
 function get_all_commits {
 
   local all_sha=$(curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=50' \
-    | jq '.[] | {author: .commit.author.name, name: .commit.committer.name, sha: .sha}')
+  | jq '.[] | {author: .commit.author.name, name: .commit.committer.name, sha: .sha}')
 
-    if [ -z "$all_sha" ]; then
-        >&2 echo "No sha found"
-        exit 1
-    fi
+  if [ -z "$all_sha" ]; then
+    >&2 echo "No sha found"
+    exit 1
+  fi
 
-    echo "$all_sha"
+  echo "$all_sha"
 }
 
 function get_filtered_commits {
 
-    local unique_sha=$(curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=50' \
-     | jq '.[] | select(.commit.author.name == .commit.committer.name) | .sha')
+  local unique_sha=$(curl 'https://api.github.com/repos/stedolan/jq/commits?per_page=50' \
+  | jq '.[] | select(.commit.author.name == .commit.committer.name) | .sha')
 
-    if [ -z "$unique_sha" ]; then
-        >&2 echo "No unique sha found"
-        exit 1
-    fi
+  if [ -z "$unique_sha" ]; then
+    >&2 echo "No unique sha found"
+    exit 1
+  fi
 
-    echo "$unique_sha"
+  echo "$unique_sha"
 }
 
 function get_rate_limit {
