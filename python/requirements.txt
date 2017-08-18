@@ -1,9 +1,3 @@
-github3
 pyjq
 requests
-jinja2
-logging
-PyGithub
-ratelimit
-
 

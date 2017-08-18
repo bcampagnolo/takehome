@@ -1,14 +1,14 @@
-AWSTemplateFormatVersion: '2010-09-09'
-Transform: AWS::Serverless-2016-10-31
-Description: node sample to list 50 sha
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: python sample to list 50 sha
 Resources:
-  nodelistsha:
-    Type: AWS::Serverless::Function
+  pythonlistsha:
+    Type: 'AWS::Serverless::Function'
     Properties:
       Handler: index.handler
-      Runtime: nodejs6.10
-      CodeUri: ../deploy/node/node_list_sha.zip
-      Description: node sample to list 50 sha
+      Runtime: python2.7
+      CodeUri: ../deploy/python/python_list_sha.zip
+      Description: python sample to list 50 sha
       MemorySize: 128
       Timeout: 3
       Environment:
@@ -19,5 +19,5 @@ Resources:
         Api1:
           Type: Api
           Properties:
-            Path: /node_list_sha
+            Path: /python_list_sha
             Method: ANY
