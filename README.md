@@ -2,12 +2,12 @@
 Sample work to explore building and deploying lambda functions.
 
 # Approach
-GitHub has a JSON API, so explore using the API. The following URL gets us the last commits from the jq
+GitHub has a JSON API, so lets explore using the API. The following URL gets us the last commits from the `jq`
 repo.
 https://api.github.com/repos/stedolan/jq/commits
 
-* bash/perl parsing exercise:
-Write a script to download the last 50 commits and extract a list of the hashes for commits that
+* bash/perl/go/python/scripting parsing exercise:
+Write a script to grab the last 50 commits and extract a list of the hashes/SHA for commits that
 have a different author than commitor.
 * programming exercise:
 Convert the above script into an AWS lambda compatible language function.
